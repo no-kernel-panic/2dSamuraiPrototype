@@ -20,12 +20,12 @@ public class Player : MonoBehaviour
         /// </summary>
         /// <param name="axisName"></param>
         animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-        Debug.Log(Input.GetAxis("Vertical"));
+     
         Jump();
         
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         
-        transform.position += movement * Time.deltaTime * moveSpeed;
+        transform.position += movement * (Time.deltaTime * moveSpeed);
         
     }
     

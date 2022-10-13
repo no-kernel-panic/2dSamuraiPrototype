@@ -29,7 +29,6 @@
 -define:PLATFORM_ARCH_64
 -define:UNITY_64
 -define:UNITY_INCLUDE_TESTS
--define:UNITY_ANALYTICS
 -define:USE_SEARCH_ENGINE_API
 -define:USE_SEARCH_TABLE
 -define:USE_SEARCH_MODULE
@@ -362,6 +361,7 @@
 "Assets/Scripts/CameraMovement.cs"
 "Assets/Scripts/Canvas.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/Star.cs"
 -langversion:9.0
 
 /deterministic

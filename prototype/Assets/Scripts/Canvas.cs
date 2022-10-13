@@ -7,9 +7,11 @@ using UnityEngine.UI;
 
 public class Canvas : MonoBehaviour
 {
-    public Transform transformit;
+    private GameObject star;
+    private Star starScript;
+    public Transform playerTransform;
     public Text scoreText;
-    private int scoretodisplay;
+    public int scoretodisplay;
     public BoxCollider2D collider;
     public Rigidbody2D myBody;
     private bool isFalling = false;
@@ -21,7 +23,8 @@ public class Canvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        star = GameObject.Find("Star");
+        starScript = star.GetComponent<Star>();
         scoretodisplay = 0;
         
     }
@@ -29,7 +32,7 @@ public class Canvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoretodisplay = (int)transformit.position.y;
+        scoretodisplay = (int)playerTransform.position.y + starScript.starScore;
         scoreText.text = "Score : " + scoretodisplay;
 
         if (myBody.velocity.y < -0.1)
