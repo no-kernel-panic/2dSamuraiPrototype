@@ -10,15 +10,17 @@ public class Player : MonoBehaviour
     public Animator animator;
     public float moveSpeed = 5f;
     public bool isGrounded = false;
-    
+    Rigidbody2D _rigidbody;
+    private Vector3 floorvec;
 
-    
+    private void Start()
+    {
+        _rigidbody = gameObject.GetComponent<Rigidbody2D>();
+      
+    }
+
     void Update()
     {
-        /// <summary>
-        ///   <para>Returns the value of the virtual axis identified by axisName.</para>
-        /// </summary>
-        /// <param name="axisName"></param>
         animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
      
         Jump();
@@ -38,14 +40,33 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.tag == "Ground")
-             isGrounded = false;
+        {
+            isGrounded = false;
+            StartCoroutine(Fade(other.gameObject));
+        }
+
+
     }
 
     void Jump()
     {
         if (Input.GetButtonDown("Jump") && isGrounded == true )
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 650f), ForceMode2D.Impulse);
+          _rigidbody.AddForce(new Vector2(0f, 650f), ForceMode2D.Impulse);
+        }
+    }
+    
+    
+    
+    IEnumerator Fade(GameObject obj)
+    {
+        Vector3 scales = obj.transform.localScale;
+        for (float scale = 1f; scale >= 0; scale -= 0.01f)
+        {
+            scales.x = scale;
+            scales.y = scale;
+            obj.transform.localScale = scales;
+            yield return null;
         }
     }
     
