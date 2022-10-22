@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Ground")
              isGrounded = true;
     }
+    
+    
    
     private void OnCollisionExit2D(Collision2D other)
     {
